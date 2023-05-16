@@ -1,11 +1,12 @@
 import React from "react";
-import cv_logo from '../../assets/cv_logo.png'
 import Header from '../../layout/header/header'
+import Footer from '../../layout/footer/footer'
 
 export default function Home() {
   return (
     <div>
         <Header/>
+        <Footer/>
     </div>
   );
 }
