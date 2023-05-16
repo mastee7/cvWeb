@@ -1,11 +1,11 @@
 import React from "react";
 import cv_logo from '../../assets/cv_logo.png'
+import Header from '../../layout/header/header'
 
 export default function Home() {
   return (
-    <>
-        <img src={cv_logo} alt="cv_logo" />
-        <h1>home</h1>
-    </>
+    <div>
+        <Header/>
+    </div>
   );
 }
