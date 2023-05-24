@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer style={{ display: "flex", alignItems: "center" }}>
-      <p style={{ flex: 1 }}>&copy; {new Date().getFullYear()} Computer Vision Club at ASU</p>
+      <p className="copy">&copy; {new Date().getFullYear()} Computer Vision Club at ASU</p>
       <a href="https://www.instagram.com/cv_asu/">
         <img src={Insta} alt="instagram" />
       </a>

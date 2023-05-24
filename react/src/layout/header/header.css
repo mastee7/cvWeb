@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+.sections {
+    display: flex;
+    align-items: center;
+    gap: 10vh;
+}
+
+.Logo {
+    height: 100px;
+}
+
+.Album a, .Project a {
+    color: rgba(0, 99, 178, 1);
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.instagram {
+    height: 35px;
+    cursor: pointer;
+    transition: transform 0.15s ease-in-out;
+}
+
+.instagram:hover {
+    transform: scale(1.2);
+}
+
+
+.discord {
+    height: 35px;
+    cursor: pointer;
+    transition: transform 0.15s ease-in-out; 
+}
+
+.discord:hover {
+    transform: scale(1.2); 
+}
+
+.Album, .Project {
+    list-style: none;
+    transition: transform 0.15s ease-in-out; 
+}
+
+.Album:hover, .Project:hover {
+    transform: scale(1.2); 
+}
+
+.links {
+    display: flex;
+    gap: 10vh;
+}
