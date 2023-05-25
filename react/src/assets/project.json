@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Project 1",
+        "summary": "This is a summary for Project 1",
+        "contributors": "Contributors for Project 1"
+    },
+    {
+        "title": "Project 2",
+        "summary": "This is a summary for Project 2",
+        "contributors": "Contributors for Project 2"
+    },
+    {
+        "title": "Project 3",
+        "summary": "This is a summary for Project 3",
+        "contributors": "Contributors for Project 3"
+    }
+]

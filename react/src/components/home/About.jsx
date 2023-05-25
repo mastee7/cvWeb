@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import Webcam from 'react-webcam';
 import "./About.css"
 
@@ -61,6 +61,24 @@ const Right =  styled.div`
   margin-top: -50px;
 `;
 
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+const blink = keyframes`
+  0% { opacity: 1; }
+  30% { opacity: 0.6; }
+  100% { opacity: 1; }
+`;
+
 const Button = styled.button`
   background-color: rgba(0, 99, 178, 1);
   color: white;  
@@ -71,7 +89,21 @@ const Button = styled.button`
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out; 
+  transition: transform 0.1s ease-in-out; 
+  animation: ${props => props.isWebcamOn ? 'none' : css`${blink} 1.5s infinite, ${pulse} 3s infinite`};
+  position: relative;
+
+  &:before {
+    content: ${props => props.isWebcamOn ? '""' : '"Click Me"'};
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(0, 99, 178, 1);
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    opacity: 0.8;
+  }
 
   &:hover {
     transform: scale(1.05);
@@ -85,14 +117,15 @@ export default function About() {
 
   const toggleWebcam = () => {
     setIsWebcamOn(!isWebcamOn);
-  }
+  };
+  
 
   return(
     <Section>
         <Container>
           <Left>
             <Title className="title">Computer Vision Club at ASU</Title>
-            <Desc className="desc">A club where we nurture passion, cultivate skills, and envision computer vision's future.</Desc>
+            <Desc className="desc">We ignite passion, enhance skills, and pioneer the future of computer vision technology.</Desc>
           </Left>
           <Right> 
             {isWebcamOn && <StyledWebcam
@@ -100,7 +133,9 @@ export default function About() {
               ref={webcamRef}
               screenshotFormat="image/jpeg"
             />}
-            <Button onClick={toggleWebcam}>{isWebcamOn ? 'Stop Webcam' : 'Say Hi! 👋'}</Button>
+            <Button onClick={toggleWebcam} isWebcamOn={isWebcamOn}>
+              {isWebcamOn ? 'Stop Webcam' : 'Say Hi! 👋'}
+            </Button>
           </Right>
         </Container>
     </Section>

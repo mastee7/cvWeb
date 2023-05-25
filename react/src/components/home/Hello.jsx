@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import RoadMap from '../../assets/roadMap.png'
 
 
 const Section = styled.div`
@@ -21,7 +22,13 @@ const Container =  styled.div`
 const Left =  styled.div`
   flex: 1;
   position: relative;
-  padding-bottom: 200px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+`;
+
+const RoadMapImg = styled.img`
+  max-height: 70%;
+  width: auto;
 `;
 
 const Title =  styled.h1`
@@ -69,7 +76,7 @@ export default function Hello() {
         <Section>
           <Container>
             <Left> 
-              {/* Hello project */}
+              <RoadMapImg src={RoadMap} alt="RoadMap" className='roadMap'/>
             </Left>
             <Right>
               <Title className="title">What we do</Title>
