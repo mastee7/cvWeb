@@ -33,7 +33,7 @@ const Button = styled.button`
     color: white;
     transition: transform 0.15s ease-in-out; 
     &:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
 `;
 

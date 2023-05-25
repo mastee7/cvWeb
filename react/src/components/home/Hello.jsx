@@ -21,7 +21,7 @@ const Container =  styled.div`
 const Left =  styled.div`
   flex: 1;
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 200px;
 `;
 
 const Title =  styled.h1`
@@ -32,18 +32,21 @@ const Title =  styled.h1`
 
 const Button = styled.button`
   background-color: rgba(0, 99, 178, 1);
-  color: white;
-  font-weight: 500;
-  width: 120px;
+  color: white;  
   padding: 10px;
+  width: 170px;
   border: none;
   border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
-  transition: transform 0.15s ease-in-out; 
+  transition: transform 0.2s ease-in-out; 
+
   &:hover {
-      transform: scale(1.05);
+    transform: scale(1.05);
   }
-`
+`;
 
 const Desc =  styled.p`
   font-size: 24px;
@@ -56,7 +59,8 @@ const Right =  styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  padding-bottom: 100px;
+  margin-top: -90px;
+  padding-bottom: 200px;
 `;
 
 

@@ -27,14 +27,14 @@ const ContentContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 90%;
-  padding-bottom: 50px;
+  padding-bottom: 100px;
 `;
 
 const Title =  styled.h1`
   font-size: 74px;  
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
-  margin-bottom: -50px;
+  margin-top: -30px;
 `;
 
 const Left =  styled.div`

@@ -27,7 +27,8 @@ const Left =  styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  padding-bottom: 100px;
+  padding-bottom: 120px;
+  margin-top: -70px;
 `;
 
 const Title =  styled.h1`
@@ -51,14 +52,40 @@ const StyledWebcam = styled(Webcam)`
 const Right =  styled.div`
   flex: 3;
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
+  flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
+  margin-top: -50px;
 `;
+
+const Button = styled.button`
+  background-color: rgba(0, 99, 178, 1);
+  color: white;  
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out; 
+
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
 
 export default function About() {
   const webcamRef = React.useRef(null);
+  const [isWebcamOn, setIsWebcamOn] = React.useState(true);
+
+  const toggleWebcam = () => {
+    setIsWebcamOn(!isWebcamOn);
+  }
 
   return(
     <Section>
@@ -68,11 +95,12 @@ export default function About() {
             <Desc className="desc">A club where we nurture passion, cultivate skills, and envision computer vision's future.</Desc>
           </Left>
           <Right> 
-            <StyledWebcam
+            {isWebcamOn && <StyledWebcam
               audio={false}
               ref={webcamRef}
               screenshotFormat="image/jpeg"
-            />
+            />}
+            <Button onClick={toggleWebcam}>{isWebcamOn ? 'Stop Webcam' : 'Say Hi! 👋'}</Button>
           </Right>
         </Container>
     </Section>
