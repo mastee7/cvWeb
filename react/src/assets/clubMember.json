@@ -1,0 +1,50 @@
+[
+    {
+      "name": "Woojeh Chung",
+      "position": "President",
+      "image": "/Woojeh.jpeg",
+      "linkedIn": "https://www.linkedin.com/in/woojehchung/"
+    },
+    {
+        "name": "Adeline Trisnobuwono",
+        "position": "Vice President",
+        "image": "/Adeline.jpeg",
+        "linkedIn": "https://www.linkedin.com/in/adelinetrisnobuwono/"
+    },
+    {
+        "name": "Adam Nugroho",
+        "position": "Vice President",
+        "image": "/Adam.jpeg",
+        "linkedIn": "https://www.linkedin.com/in/adam-nugroho/"
+    },
+    {
+        "name": "Yoonjeong Park",
+        "position": "Treasurer",
+        "image": "Yoonjeong.jpeg",
+        "linkedIn": "https://www.linkedin.com/in/yoonjeongpark/"
+    },
+    {
+        "name": "Fawwaz Firdaus",
+        "position": "Technical Officer",
+        "image": "Fawwaz.jpeg",
+        "linkedIn": "https://www.linkedin.com/in/fawwazfirdaus/"
+    },
+    {
+        "name": "Yuki Okada",
+        "position": "Graphical Designer",
+        "image": "https://via.placeholder.com/128",
+        "linkedIn": ""
+    },
+    {
+        "name": "Indian",
+        "position": "Software Engineer",
+        "image": "https://via.placeholder.com/128",
+        "linkedIn": "https://www.linkedin.com/in/woojehchung/"
+    },
+    {
+        "name": "Suren Jayasuriya",
+        "position": "Primary Advisor",
+        "image": "/Suren.jpeg",
+        "linkedIn": "https://www.linkedin.com/in/suren-jayasuriya-4112926b/"
+    }
+  ]

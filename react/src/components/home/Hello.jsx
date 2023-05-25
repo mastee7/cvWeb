@@ -21,6 +21,7 @@ const Container =  styled.div`
 const Left =  styled.div`
   flex: 1;
   position: relative;
+  padding-bottom: 100px;
 `;
 
 const Title =  styled.h1`
@@ -55,6 +56,7 @@ const Right =  styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+  padding-bottom: 100px;
 `;
 
 
@@ -68,7 +70,7 @@ export default function Hello() {
             <Right>
               <Title className="title">What we do</Title>
               <Desc className="desc">
-                Hi!
+                Hi! 
                 We are a group of highly motivated, passionate, and curios students from different backgrounds.
                 This club provides a platform for students to connect, learn, and start or work on projects 
                 particularly in the computer vision area as one of the applications for machine learning.

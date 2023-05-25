@@ -10,12 +10,30 @@
     height: 100px;
 }
 
-.Album a, .Project a {
+.Home a, .Album a, .Project a {
     color: rgba(0, 99, 178, 1);
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
 }
 
+.Home a::after, .Album a::after, .Project a::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 50%;
+    background: rgba(0, 99, 178, 1);
+    transform: scaleX(0);
+    transition: transform 0.25s ease-in-out;
+    transform-origin: left;
+    position: relative;
+    bottom: 15px; 
+}
+
+.Home a:hover::after, .Album a:hover::after, .Project a:hover::after,
+.Home.active a::after, .Album.active a::after, .Project.active a::after {
+    transform: scaleX(1.3);
+    transform-origin: left;
+}
 
 .instagram {
     height: 35px;
@@ -38,16 +56,20 @@
     transform: scale(1.2); 
 }
 
-.Album, .Project {
+.Home, .Album, .Project {
     list-style: none;
     transition: transform 0.15s ease-in-out; 
 }
 
-.Album:hover, .Project:hover {
+.Home:hover, .Album:hover, .Project:hover {
     transform: scale(1.2); 
 }
 
 .links {
     display: flex;
     gap: 10vh;
+}
+
+.button {
+    font-family: 'Poppins', sans-serif;
 }

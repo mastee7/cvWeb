@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import cv_logo from '../../assets/cv_logo.png';
 import Instagram from '../../assets/Instagram.png';
 import Discord from '../../assets/Discord.png';
@@ -10,6 +10,7 @@ import "./header.css"
 const Section = styled.div`
     display: flex;
     justify-content: center;
+    background-color: rgba(198, 235, 255, 1);
 `;
 
 const Container = styled.div`
@@ -21,7 +22,7 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
-    width: 150px;
+    width: 140px;
     height: 40px;
     padding: 10px;
     background-color: rgba(0, 99, 178, 1);
@@ -37,19 +38,7 @@ const Button = styled.button`
 `;
 
 export default function Header() {
-
-    const navigate = useNavigate();
-
-    // handling about
-    const handleAlbum = (event) => {
-        navigate("/album");
-    };
-
-    //handling projects
-    const handleProjects = (event) => {
-        navigate("/projects");
-    };
-
+    const location = useLocation();
 
     return (
         <Section>
@@ -58,15 +47,20 @@ export default function Header() {
                     <div className='sections'>
                         <img src={cv_logo} alt = "cv logo" className='Logo'/>
                         <ul className='links'>
-                            <li className='Album'>
-                                <a href='' onClick={handleAlbum}>
-                                    <h3>Album</h3>
-                                </a>
+                            <li className={location.pathname === "/" ? "Home active" : "Home"}>
+                                <Link to='/'>
+                                    <h3>Home</h3>
+                                </Link>
                             </li>
-                            <li className='Project'>
-                                <a href='' onClick={handleProjects}>
+                            <li className={location.pathname === "/albums" ? "Album active" : "Album"}>
+                                <Link to='/albums'>
+                                    <h3>Album</h3>
+                                </Link>
+                            </li>
+                            <li className={location.pathname === "/projects" ? "Project active" : "Project"}>
+                                <Link to='/projects'>
                                     <h3>Projects</h3>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                         <a href="https://www.instagram.com/cv_asu/">
@@ -75,7 +69,7 @@ export default function Header() {
                         <a href="https://discord.gg/KqE2Pah4yt">
                             <img src={Discord} alt='Discord' className='discord'/>
                         </a>
-                        <Button>Join Our Club</Button>
+                        <Button className='button'>Join Our Club</Button>
                     </div>
                 </nav>
             </Container>

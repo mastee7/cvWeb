@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Hello from './Hello'
+import People from './People'
 import Contact from './Contact'
 import About from './About'
 
@@ -21,6 +22,7 @@ export default function Home() {
     <Container>
         <About/>
         <Hello/>
+        <People/>
         <Contact/> 
     </Container>
   );
