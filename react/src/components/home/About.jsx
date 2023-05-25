@@ -129,11 +129,13 @@ const ScrollDownIndicator = styled.div`
   justify-content: center;
   bottom: 20px;
   opacity: ${props => props.opacity};
+  transition: opacity 0.5s ease;
 `;
 
 const Arrow = styled.img`
-  width: 50px; // adjust the size as you want
+  width: 50px;
   animation: ${bounce} 5s infinite;
+  bottom: 20px;
 `;
 
 const ScrollText = styled.p`
@@ -156,7 +158,7 @@ export default function About() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const newOpacity = Math.max(1 - scrollPosition / 200, 0);
+      const newOpacity = Math.max(Math.log10((200 - scrollPosition) / 50), 0);
       setOpacity(newOpacity);
     
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
