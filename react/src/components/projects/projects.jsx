@@ -61,7 +61,7 @@ const HeaderRow = styled.div`
   padding: 20px;
   border-bottom: 1px solid #000;
   font-family: 'Poppins', sans-serif;
-  width: 695px;
+  width: 770px;
   color: rgba(0, 99, 178, 1);
 `
 
@@ -69,16 +69,20 @@ const ProjectRow = styled(Link)`
   display: flex;
   text-decoration: none;
   color: inherit;
-  padding: 20px;
+  padding: 10px;
   border-bottom: 1px solid #000;
   font-family: 'Poppins', sans-serif;
+  width: 770px;
   gap: 100px;
+
+  p {
+    min-width: 190px; 
+  }
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1); // Change this color to your preferred hover color
   }
 `;
-
 
 export default function Projects() {
 

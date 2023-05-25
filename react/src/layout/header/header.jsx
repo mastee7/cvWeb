@@ -38,6 +38,11 @@ const Button = styled.button`
     }
 `;
 
+const ButtonLink = styled.a`
+    text-decoration: none;
+    color: white;
+`;
+
 export default function Header() {
     const location = useLocation();
 
@@ -70,7 +75,9 @@ export default function Header() {
                         <a href="https://discord.gg/KqE2Pah4yt">
                             <img src={Discord} alt='Discord' className='discord'/>
                         </a>
-                        <Button className='button'>Join Our Club</Button>
+                        <ButtonLink href="https://asu.campuslabs.com/engage/organization/cvatasu" target="_blank" rel="noopener noreferrer">
+                            <Button className='button'>Join Our Club</Button>
+                        </ButtonLink>
                     </div>
                 </nav>
             </Container>

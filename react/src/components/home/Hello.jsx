@@ -22,12 +22,12 @@ const Container =  styled.div`
 const Left =  styled.div`
   flex: 1;
   position: relative;
-  padding-top: 100px;
+  padding-top: 50px;
   padding-bottom: 100px;
 `;
 
 const RoadMapImg = styled.img`
-  max-height: 70%;
+  max-height: 85%;
   width: auto;
 `;
 
