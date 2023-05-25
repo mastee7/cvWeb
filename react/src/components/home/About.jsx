@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import Webcam from 'react-webcam';
+import arrow from '../../assets/arrow.png';
+import lines from '../../assets/lines.png';
 import "./About.css"
 
 const Section = styled.div`
@@ -110,15 +112,66 @@ const Button = styled.button`
   }
 `;
 
+const bounce = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+`;
+
+const ScrollDownIndicator = styled.div`
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  bottom: 20px;
+  opacity: ${props => props.opacity};
+`;
+
+const Arrow = styled.img`
+  width: 50px; // adjust the size as you want
+  animation: ${bounce} 5s infinite;
+`;
+
+const ScrollText = styled.p`
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  color: rgba(0, 99, 178, 1);
+`;
+
 
 export default function About() {
   const webcamRef = React.useRef(null);
   const [isWebcamOn, setIsWebcamOn] = React.useState(true);
+  const [opacity, setOpacity] = React.useState(1);
+  const [isBottom, setIsBottom] = React.useState(false);
 
   const toggleWebcam = () => {
     setIsWebcamOn(!isWebcamOn);
   };
   
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const newOpacity = Math.max(1 - scrollPosition / 200, 0);
+      setOpacity(newOpacity);
+    
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        setIsBottom(true);
+      } else {
+        setIsBottom(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return(
     <Section>
@@ -138,6 +191,18 @@ export default function About() {
             </Button>
           </Right>
         </Container>
+        <ScrollDownIndicator opacity={opacity}>
+          {isBottom ? (
+            <>
+              <Arrow src={lines} alt="end of page" />
+            </>
+          ) : (
+            <>
+              <Arrow src={arrow} alt="scroll down" />
+              <ScrollText>Scroll down</ScrollText>
+            </>
+          )}
+        </ScrollDownIndicator>
     </Section>
   );
 }
