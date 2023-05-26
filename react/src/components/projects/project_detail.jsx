@@ -25,8 +25,7 @@ const Left =  styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  padding-bottom: 230px;
-  margin-top: -50px;
+  padding-bottom: 30px;  
 `;
 
 const Title =  styled.h1`
@@ -49,7 +48,6 @@ const Right =  styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin-top: -50px;
 `;
 
 export default function project_detail() {
