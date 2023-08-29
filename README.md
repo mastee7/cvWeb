@@ -1,4 +1,4 @@
-# Computer Vision Club Website <img width="252" alt="CVLogo width="100" src="https://github.com/mastee7/cvWeb/assets/93624334/f0f377e8-1b62-45c6-a06e-85641653475c">
+# Computer Vision Club Website <img width="100" alt="CVLogo" src="https://github.com/mastee7/cvWeb/assets/93624334/66a0d514-7c78-40eb-adf7-0991bae5ba87">
 
 Welcome to the official GitHub repository for the Computer Vision Club's website. Dive into the cutting-edge intersection of web technologies and the realm of computer vision.
 
