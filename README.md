@@ -25,7 +25,8 @@ Run the Application
 ... (Instructions to run the local development server)
 
 🙌 Contributing
-[<img src="https://github.com/{{ mastee7 }}.png" width="60px;"/><br /><sub><ahref="https://github.com/{{ mastee7 }}">{{ mastee7 }}</a></sub>](https://github.com/{{ mastee7 }}/{{ cvWeb }}
+[<img src="https://github.com/mastee7.png" width="60px"/><br /><sub><a href="https://github.com/mastee7">mastee7</a></sub>](https://github.com/mastee7/cvWeb)
+
 Contributions, issues, and feature requests are welcome!
 
 📜 License
