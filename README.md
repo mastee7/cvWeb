@@ -1,4 +1,5 @@
-# Computer Vision Club Website 🖼️
+# Computer Vision Club Website ![CVnew1](https://github.com/mastee7/cvWeb/assets/93624334/861e6532-b249-4514-bffd-5dc95e95ada1)
+
 Welcome to the official GitHub repository for the Computer Vision Club's website. Dive into the cutting-edge intersection of web technologies and the realm of computer vision.
 
 ## 🚀 Technologies
