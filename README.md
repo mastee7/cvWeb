@@ -15,16 +15,21 @@ Deployment:
 ### AWS S3 - For reliable and scalable deployment.
 
 ## 🛠️ Local Setup
-Clone the Repository
-bash
-Copy code
-git clone https://github.com/YourUsername/cvWeb.git
-cd ComputerVisionClubWebsite
-Install Dependencies
-... (Instructions for installing frontend and backend dependencies)
+1. Clone the Repository
+```bash
+git clone https://github.com/mastee7/cvWeb.git
+cd cvWeb
+```
+2. Install Dependencies
+```bash
+cd react
+npm install
+```
 
-Run the Application
-... (Instructions to run the local development server)
+3. Run the Application
+```bash
+npm run dev
+```
 
 ## 🙌 Contributing
 
