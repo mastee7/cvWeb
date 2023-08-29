@@ -27,11 +27,14 @@ Run the Application
 ... (Instructions to run the local development server)
 
 ## 🙌 Contributing
-[<img src="https://github.com/mastee7.png" width="60px"/><br /><sub><a href="https://github.com/mastee7">mastee7</a></sub>](https://github.com/mastee7/cvWeb)
 
-[<img src="https://github.com/fawwazfirdaus.png" width="60px"/><br /><sub><a href="https://github.com/fawwazfirdaus">fawwazfirdaus</a></sub>](https://github.com/mastee7/cvWeb)
-
-[<img src="https://github.com/martinlizarraga.png" width="60px"/><br /><sub><a href="https://github.com/martinlizarraga">martinlizarraga</a></sub>](https://github.com/mastee7/cvWeb)
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/mastee7"><img src="https://github.com/mastee7.png" width="60px" alt=""/><br /><sub><b>mastee7</b></sub></a></td>
+    <td align="center"><a href="https://github.com/fawwazfirdaus"><img src="https://github.com/fawwazfirdaus.png" width="60px" alt=""/><br /><sub><b>fawwazfirdaus</b></sub></a></td>
+    <td align="center"><a href="https://github.com/martinlizarraga"><img src="https://github.com/martinlizarraga.png" width="60px" alt=""/><br /><sub><b>martinlizarraga</b></sub></a></td>
+  </tr>
+</table>
 
 Contributions, issues, and feature requests are welcome!
 
