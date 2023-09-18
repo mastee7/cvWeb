@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import styled, { keyframes, css } from 'styled-components';
-import Webcam from 'react-webcam';
-import arrow from '../../assets/arrow.png';
-import lines from '../../assets/lines.png';
-import "./About.css"
+import React, { useState, useEffect, useRef } from "react";
+import styled, { keyframes, css } from "styled-components";
+import Webcam from "react-webcam";
+import arrow from "../../assets/arrow.png";
+import lines from "../../assets/lines.png";
+import * as tf from "@tensorflow/tfjs";
+import * as handpose from "@tensorflow-models/handpose";
+import "./About.css";
 
 const Section = styled.div`
   height: 100vh;
@@ -15,7 +17,7 @@ const Section = styled.div`
   background-color: rgba(198, 235, 255, 1);
 `;
 
-const Container =  styled.div`
+const Container = styled.div`
   height: 100vh;
   width: 1400px;
   display: flex;
@@ -23,7 +25,7 @@ const Container =  styled.div`
   justify-content: space-between;
 `;
 
-const Left =  styled.div`
+const Left = styled.div`
   flex: 2;
   display: flex;
   flex-direction: column;
@@ -33,15 +35,15 @@ const Left =  styled.div`
   margin-top: -70px;
 `;
 
-const Title =  styled.h1`
-  font-size: 74px;  
-  font-family: 'Poppins', sans-serif;
+const Title = styled.h1`
+  font-size: 74px;
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
 `;
 
-const Desc =  styled.p`
+const Desc = styled.p`
   font-size: 24px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 `;
 
 const StyledWebcam = styled(Webcam)`
@@ -51,7 +53,7 @@ const StyledWebcam = styled(Webcam)`
   height: 50%;
 `;
 
-const Right =  styled.div`
+const Right = styled.div`
   flex: 3;
   position: relative;
   padding-bottom: 80px;
@@ -83,27 +85,31 @@ const blink = keyframes`
 
 const Button = styled.button`
   background-color: rgba(0, 99, 178, 1);
-  color: white;  
+  color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 16px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   cursor: pointer;
-  transition: transform 0.1s ease-in-out; 
-  animation: ${props => props.isWebcamOn ? 'none' : css`${blink} 1.5s infinite, ${pulse} 3s infinite`};
+  transition: transform 0.1s ease-in-out;
+  animation: ${(props) =>
+    props.isWebcamOn
+      ? "none"
+      : css`${blink} 1.5s infinite, ${pulse} 3s infinite`};
   position: relative;
 
   &:before {
-    content: ${props => props.isWebcamOn ? '""' : '"Click Me"'};
+    content: ${(props) =>
+      props.isWebcamOn ? '""' : '"Click Me"'};
     position: absolute;
     top: -30px;
     left: 50%;
     transform: translateX(-50%);
     color: rgba(0, 99, 178, 1);
     font-size: 13px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     opacity: 0.8;
   }
 
@@ -128,7 +134,7 @@ const ScrollDownIndicator = styled.div`
   align-items: center;
   justify-content: center;
   bottom: 20px;
-  opacity: ${props => props.opacity};
+  opacity: ${(props) => props.opacity};
   transition: opacity 0.5s ease;
 `;
 
@@ -140,71 +146,110 @@ const Arrow = styled.img`
 
 const ScrollText = styled.p`
   font-size: 18px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: rgba(0, 99, 178, 1);
 `;
 
-
-export default function About() {
-  const webcamRef = React.useRef(null);
-  const [isWebcamOn, setIsWebcamOn] = React.useState(true);
-  const [opacity, setOpacity] = React.useState(1);
-  const [isBottom, setIsBottom] = React.useState(false);
+const About = () => {
+  const webcamRef = useRef(null);
+  const [isWebcamOn, setIsWebcamOn] = useState(true);
+  const [opacity, setOpacity] = useState(1);
+  const [isBottom, setIsBottom] = useState(false);
+  const [model, setModel] = useState(null);
+  const [predictions, setPredictions] = useState([]);
 
   const toggleWebcam = () => {
     setIsWebcamOn(!isWebcamOn);
   };
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const newOpacity = Math.max(Math.log10((200 - scrollPosition) / 50), 0);
       setOpacity(newOpacity);
-    
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight
+      ) {
         setIsBottom(true);
       } else {
         setIsBottom(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  return(
+  useEffect(() => {
+    const loadModel = async () => {
+      const loadedModel = await handpose.load();
+      setModel(loadedModel);
+    };
+    loadModel();
+  }, []);
+
+  useEffect(() => {
+    if (model && isWebcamOn) {
+      const interval = setInterval(runHandpose, 100);
+      return () => clearInterval(interval);
+    }
+  }, [model, isWebcamOn]);
+
+  const runHandpose = async () => {
+    const video = webcamRef.current.video;
+    const predictions = await model.estimateHands(video);
+    setPredictions(predictions);
+  };
+
+  return (
     <Section>
-        <Container>
-          <Left>
-            <Title className="title">Computer Vision Club at ASU</Title>
-            <Desc className="desc">We ignite passion, enhance skills, and pioneer the future of computer vision technology.</Desc>
-          </Left>
-          <Right> 
-            {isWebcamOn && <StyledWebcam
+      <Container>
+        <Left>
+          <Title className="title">
+            Computer Vision Club at ASU
+          </Title>
+          <Desc className="desc">
+            We ignite passion, enhance skills, and pioneer the future of computer vision technology.
+          </Desc>
+        </Left>
+        <Right>
+          {isWebcamOn && (
+            <StyledWebcam
               audio={false}
               ref={webcamRef}
               screenshotFormat="image/jpeg"
-            />}
-            <Button onClick={toggleWebcam} isWebcamOn={isWebcamOn}>
-              {isWebcamOn ? 'Stop Webcam' : 'Say Hi! 👋'}
-            </Button>
-          </Right>
-        </Container>
-        <ScrollDownIndicator opacity={opacity}>
-          {isBottom ? (
-            <>
-              <Arrow src={lines} alt="end of page" />
-            </>
-          ) : (
-            <>
-              <Arrow src={arrow} alt="scroll down" />
-              <ScrollText>Scroll down</ScrollText>
-            </>
+            />
           )}
-        </ScrollDownIndicator>
+          {!isWebcamOn && (
+            <Hand
+              video={webcamRef.current?.video}
+              predictions={predictions}
+            />
+          )}
+          <Button onClick={toggleWebcam} isWebcamOn={isWebcamOn}>
+            {isWebcamOn ? "Stop Webcam" : "Say Hi! 👋"}
+          </Button>
+        </Right>
+      </Container>
+      <ScrollDownIndicator opacity={opacity}>
+        {isBottom ? (
+          <>
+            <Arrow src={lines} alt="end of page" />
+          </>
+        ) : (
+          <>
+            <Arrow src={arrow} alt="scroll down" />
+            <ScrollText>Scroll down</ScrollText>
+          </>
+        )}
+      </ScrollDownIndicator>
     </Section>
   );
-}
+};
+
+export default About;
