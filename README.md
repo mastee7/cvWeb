@@ -23,12 +23,8 @@ cd cvWeb
 2. Install Dependencies
 ```bash
 cd react
+npm config set legacy-peer-deps true // If you encounter "ERESOLVE unable to resolve dependency tree"
 npm install
-```
-
-2.1 Troubleshooting "npm ERR! code ERESOLVE npm ERR! ERESOLVE could not resolve"
-```bash
-npm config set legacy-peer-deps true
 ```
 
 3. Run the Application
