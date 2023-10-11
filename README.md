@@ -23,8 +23,13 @@ cd cvWeb
 2. Install Dependencies
 ```bash
 cd react
-npm config set legacy-peer-deps true // If you encounter "ERESOLVE unable to resolve dependency tree"
+npm config set legacy-peer-deps true # To resolve this error: "ERESOLVE unable to resolve dependency tree"
 npm install
+```
+
+Install tensorflow
+```bash
+npm install @tensorflow/tfjs
 ```
 
 3. Run the Application
