@@ -26,6 +26,11 @@ cd react
 npm install
 ```
 
+2.1 Troubleshooting "npm ERR! code ERESOLVE npm ERR! ERESOLVE could not resolve"
+```bash
+npm config set legacy-peer-deps true
+```
+
 3. Run the Application
 ```bash
 npm run dev
