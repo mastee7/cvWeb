@@ -30,15 +30,11 @@ This README outlines the steps to set up a Node.js Environment with Express.js a
    
 ## Step 3: Install Git
 
-1. Update package lists
+1. Install Git
    ```bash
-   sudo apt-get update -y
+   sudo yum install git
    ```
-2. Install Git
-   ```bash
-   sudo apt-get install git -y
-   ```
-3. Verify the installation
+2. Verify the installation
     ```bash
     git —-version
    ```
