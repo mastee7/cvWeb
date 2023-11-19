@@ -13,6 +13,9 @@ router.post('/login', usersController.loginUser);
 // Route for user profile, requiring authentication
 router.get('/profile', usersController.checkAuthenticated, usersController.getUserProfile);
 
+// Route for validating the token
+router.get('/validate-token', checkAuthenticated, usersController.validateToken);
+
 // Route for updating user profile, requiring authentication
 router.put('/profile', usersController.checkAuthenticated, usersController.updateUserProfile);
 

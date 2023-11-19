@@ -69,3 +69,9 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 };
+
+
+exports.validateToken = (req, res) => {
+    // If the middleware didn't throw an error, the token is good
+    res.status(200).json({ message: 'Token is valid', userId: req.user.userId });
+};

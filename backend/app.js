@@ -25,6 +25,14 @@ app.use(express.urlencoded({ extended: true }));
 // Static files middleware
 app.use(express.static('public'));
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+
+// Apply to all requests
+app.use(limiter);
+
 
 // File upload middleware configuration
 // You can configure the storage, file filter, limits, etc.
