@@ -1,18 +1,24 @@
 # Computer Vision Club Website <img width="50" alt="CVLogo" src="https://github.com/mastee7/cvWeb/assets/93624334/66a0d514-7c78-40eb-adf7-0991bae5ba87">
 
-Welcome to the official GitHub repository for the Computer Vision Club's website. Dive into the cutting-edge intersection of web technologies and the realm of computer vision.
+Welcome to the official GitHub repository for the Computer Vision Club's website. This platform is the nexus where web technologies meet the innovative world of computer vision.
 
 ## 🚀 Technologies
-Frontend:
+Our stack is composed of modern and scalable technologies designed to deliver a robust web application.
 
-### React - Our primary frontend framework.
-React-Router-Dom - For intuitive page navigation.
-Backend (In Progress):
+### Frontend:
+- **React**: Our primary frontend library for building a dynamic and responsive user interface.
+- **React Router**: For seamless and intuitive routing between pages.
 
-### Django - High-level Python web framework for robust backend operations.
-Deployment:
+### Backend:
+- **Node.js & Express**: The backbone of our server-side operations, providing a lightweight yet powerful framework for our APIs.
+- **MongoDB**: Our chosen database for flexible and scalable data management.
 
-### AWS S3 - For reliable and scalable deployment.
+### Deployment:
+- **AWS EC2**: We use Amazon EC2 instances to host our server, ensuring high availability and performance.
+- **AWS S3**: For storing images and other static assets with reliability and scalability.
+- **AWS Amplify**: To streamline the deployment and hosting of our web application, providing a seamless CI/CD pipeline.
+
+We are committed to using the best practices and architectures to ensure our application is efficient and maintainable. Join us in pushing the boundaries of computer vision applications on the web!
 
 ## 🛠️ Local Setup
 1. Clone the Repository

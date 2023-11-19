@@ -1,0 +1,73 @@
+# Node specific
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Logs
+logs
+*.log
+*.out
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# dotenv environment variable files
+.env
+.env.test
+.env.*.local
+
+# Dist / build
+dist/
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript v1 declaration files
+typings/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Tern project file
+.tern-project
+
+# OS generated files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Dependency lock files
+package-lock.json
+yarn.lock
+
+# MongoDB storage
+/data/
+*.lock
+*.socket
+
+# Misc
+*.gz
+*.zip
+*.tar
+*.tar.gz
+*.pem
