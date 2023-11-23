@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const BlacklistedToken = require('../models/blackListedToken');
 
 exports.registerUser = async (req, res) => {
     const { firstName, lastName, email, academicYear, major, role, password } = req.body;
@@ -69,6 +70,21 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 };
+
+exports.logoutUser = async (req, res) => {
+    try {
+      const token = req.headers.authorization.split(' ')[1]; // Get the token from the header
+      const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+      const expiryDate = new Date(decodedToken.exp * 1000); // Convert UNIX epoch to JS Date
+  
+      // Save the token to the blacklist
+      await new BlacklistedToken({ token, expiryDate }).save();
+  
+      res.status(200).json({ message: 'Logged out successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Server error', error });
+    }
+  };
 
 
 exports.validateToken = (req, res) => {

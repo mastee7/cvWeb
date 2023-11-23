@@ -1,6 +1,6 @@
-// routes/users.js
 const express = require('express');
 const usersController = require('../controllers/usersController');
+const { checkAuthenticated } = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
@@ -10,14 +10,15 @@ router.post('/register', usersController.registerUser);
 // Route for user login
 router.post('/login', usersController.loginUser);
 
-// Route for user profile, requiring authentication
-router.get('/profile', usersController.checkAuthenticated, usersController.getUserProfile);
-
 // Route for validating the token
 router.get('/validate-token', checkAuthenticated, usersController.validateToken);
 
-// Route for updating user profile, requiring authentication
-router.put('/profile', usersController.checkAuthenticated, usersController.updateUserProfile);
+
+// // Route for user profile, requiring authentication
+// router.get('/profile', usersController.checkAuthenticated, usersController.getUserProfile);
+
+// // Route for updating user profile, requiring authentication
+// router.put('/profile', usersController.checkAuthenticated, usersController.updateUserProfile);
 
 // Route for user logout
 router.get('/logout', usersController.logoutUser);

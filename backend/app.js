@@ -67,8 +67,48 @@ const upload = multer({
   }
 });
 
+// Root route
+app.get('/', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>API Welcome Page</title>
+      <style>
+        body { font-family: Arial, sans-serif; }
+        ul { line-height: 1.6; }
+      </style>
+    </head>
+    <body>
+      <h1>Welcome to the CV Club at ASU website API</h1>
+      <p>This API is built using <strong>Express.js</strong>, a web framework for <strong>Node.js</strong>.</p>
+      <p>Below are the available routes:</p>
+
+      <h2>Users Routes</h2>
+      <ul>
+        <li><b>POST /api/users/register</b> - Register a new user</li>
+        <li><b>POST /api/users/login</b> - Login a user</li>
+        <li><b>GET /api/users/validate-token</b> - Validate user's token (Requires Authentication)</li>
+        <li><b>GET /api/users/logout</b> - Logout a user (Requires Authentication)</li>
+      </ul>
+
+      <h2>Posts Routes</h2>
+      <ul>
+        <li><b>POST /api/posts</b> - Create a new post (Requires Authentication and Image Upload)</li>
+        <li><b>GET /api/posts</b> - Retrieve all posts</li>
+        <li><b>GET /api/posts/:id</b> - Retrieve a post by ID</li>
+        <li><b>PUT /api/posts/:id</b> - Update a post by ID (Requires Authentication and Image Upload)</li>
+        <li><b>DELETE /api/posts/:id</b> - Delete a post by ID (Requires Authentication)</li>
+      </ul>
+    </body>
+    </html>
+  `);
+});
+
 // Use routes from separate files
-app.use('/api/posts', postRoutes(upload, checkAuthenticated)); // We pass the multer and auth middleware to routes
+app.use('/api/posts', postRoutes); // We pass the multer and auth middleware to routes
 app.use('/api/users', userRoutes);
 
 // Catch-all error handler
