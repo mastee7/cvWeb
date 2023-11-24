@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import projects from '../../assets/project.json'
 import { Link } from 'react-router-dom'

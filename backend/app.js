@@ -1,6 +1,6 @@
 // This file set up your Express server, integrate middleware, and define routes.
 // Which is the entry point of the application
-
+require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
 const helmet = require('helmet');
@@ -9,8 +9,12 @@ const rateLimit = require('express-rate-limit');
 const { checkAuthenticated } = require('./middlewares/authMiddleware');
 const postRoutes = require('./routes/posts');
 const userRoutes = require('./routes/users');
+const connectDB = require('./db');
 
 const app = express();
+
+// Connect to MongoDB
+connectDB();
 
 // Security headers
 app.use(helmet());
