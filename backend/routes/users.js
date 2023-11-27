@@ -1,23 +1,29 @@
-// routes/users.js
-const express = require('express');
-const usersController = require('../controllers/usersController');
+const express = require("express");
+const usersController = require("../controllers/usersController");
+const { checkAuthenticated } = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
 // Route for user registration
-router.post('/register', usersController.registerUser);
+router.post("/register", usersController.registerUser);
 
 // Route for user login
-router.post('/login', usersController.loginUser);
+router.post("/login", usersController.loginUser);
 
-// Route for user profile, requiring authentication
-router.get('/profile', usersController.checkAuthenticated, usersController.getUserProfile);
+// Router for user logout
+router.post("/logout", usersController.logoutUser);
 
-// Route for updating user profile, requiring authentication
-router.put('/profile', usersController.checkAuthenticated, usersController.updateUserProfile);
+// Route for validating the token
+router.get(
+  "/validate-token",
+  checkAuthenticated,
+  usersController.validateToken
+);
 
-// Route for user logout
-router.get('/logout', usersController.logoutUser);
+// // Route for user profile, requiring authentication
+// router.get('/profile', usersController.checkAuthenticated, usersController.getUserProfile);
+
+// // Route for updating user profile, requiring authentication
+// router.put('/profile', usersController.checkAuthenticated, usersController.updateUserProfile);
 
 module.exports = router;
-

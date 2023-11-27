@@ -1,12 +1,18 @@
 const jwt = require('jsonwebtoken');
+const BlacklistedToken = require('../models/blackListedToken');
 
-const checkAuthenticated = (req, res, next) => {
+const checkAuthenticated = async (req, res, next) => {
   // Check for the presence of the Authorization header
   const authHeader = req.headers.authorization;
   
   if (authHeader) {
     // Extract the token from the Authorization header
     const token = authHeader.split(' ')[1];
+
+    const tokenInBlacklist = await BlacklistedToken.findOne({ token });
+    if (tokenInBlacklist) {
+      return res.status(401).json({ message: 'Logged out token, access denied' });
+    }
 
     // Verify the token with the secret key
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {

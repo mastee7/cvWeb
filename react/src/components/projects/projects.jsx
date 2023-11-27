@@ -1,8 +1,9 @@
 import React from "react";
 import styled from 'styled-components';
 import projects from '../../assets/project.json'
-import { Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext';
+import ProjectUploadModal from './ProjectUploadModal';
 
 const Section = styled.div`
   height: 100vh;
@@ -84,7 +85,43 @@ const ProjectRow = styled(Link)`
   }
 `;
 
+const Button = styled.button`
+    width: 140px;
+    height: 40px;
+    padding: 10px;
+    background-color: rgba(0, 99, 178, 1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.15s ease-in-out; 
+    &:hover {
+        transform: scale(1.05);
+    }
+`;
+
+
 export default function Projects() {
+  const { isAuthenticated, token } = useContext(AuthContext);
+  const [showModal, setShowModal] = useState(false);
+
+  // Dummy function to simulate user login state
+  // You should replace this with your actual authentication logic
+  const checkUserLoggedIn = () => {
+    // Assume we have a function that checks the auth state
+    const loggedIn = true; // Replace with actual check
+    setIsUserLoggedIn(loggedIn);
+  };
+
+  useEffect(() => {
+    // If you need to verify the token on component mount, do it here
+  }, [token]); // 'token' should be from your AuthContext
+
+  const handleAddProjectClick = () => {
+    // Open the modal
+    setShowModal(true);
+  };
 
   return (
     <Section>
@@ -92,6 +129,8 @@ export default function Projects() {
           <Left>
             <Title className="title">Projects</Title>
             <Desc className="desc">Over the time, our members build computer vision projects that help them enrich their skill and experience.</Desc>
+            {isAuthenticated && <Button onClick={handleAddProjectClick}>Add Project</Button>}
+            {showModal && <ProjectUploadModal onClose={() => setShowModal(false)} />}
           </Left>
           <Right> 
             <HeaderRow>
