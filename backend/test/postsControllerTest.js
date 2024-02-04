@@ -9,7 +9,10 @@ require("dotenv").config({ path: "./.env.test" });
 
 describe("Post Controller Tests", function () {
   let token;
+
+  // beforeAll
   before(async function () {
+    // register and login with test user
     const userData = {
       firstName: "test",
       lastName: "user",
@@ -29,6 +32,7 @@ describe("Post Controller Tests", function () {
     token = loginResponse.body.token;
   });
 
+  // afterAll
   after(async function () {
     await User.deleteMany({});
   });
@@ -61,20 +65,11 @@ describe("Post Controller Tests", function () {
     let testPost;
 
     beforeEach(async function () {
-      // Create the post
-      //   const imagePath = path.join(__dirname, "project.jpeg");
-      //   const res = await request(app)
-      //     .post("/api/posts/")
-      //     .set("Authorization", `Bearer ${token}`)
-      //     .field("title", "project title")
-      //     .field("description", "project description")
-      //     .field("contributors", "contributor1,contributor2")
-      //     .attach("image", imagePath);
       testPost = new Post({
         // Fill in the required fields according to your Post model
         title: "Test Post",
         description: "A post to test with",
-        contributors: ["Test Contributor"],
+        contributors: ["Contributor1", "Contributor2"],
         imageUrl: "some.url",
       });
       await testPost.save();
@@ -86,12 +81,62 @@ describe("Post Controller Tests", function () {
         .to.have.property("_id")
         .to.equal(testPost._id.toString());
       expect(res.body.title).to.equal("Test Post");
+      expect(res.body.description).to.equal("A post to test with");
+      console.log(res.body.contributors);
+      //expect(res.body.contributors).to.equal(["Test Contributor"]);
+      expect(res.body.imageUrl).to.equal("some.url");
     });
 
-    it("should return Post not found error", async function () {
+    it('should return "Post not found error"', async function () {
       const someID = "507f1f77bcf86cd799439011";
       const res = await request(app).get(`/api/posts/${someID}`).expect(404);
       expect(res.body.message).to.equal("Post not found");
+    });
+  });
+
+  describe("Testing delete post", function () {
+    beforeEach(async function () {
+      let testPost = new Post({
+        title: "Test Post",
+        description: "A post to test with",
+        contributors: ["Contributor1", "Contributor2"],
+        imageUrl: "some.url",
+      });
+      await testPost.save();
+    });
+    it("should delete post", function () {
+      //request(app).put
+    });
+  });
+
+  describe("Testing update post", function () {
+    let testPostID;
+    let testPost;
+    beforeEach(async function () {
+      testPost = new Post({
+        // Fill in the required fields according to your Post model
+        title: "Test Post",
+        description: "A post to test with",
+        contributors: ["Contributor1", "Contributor2"],
+        imageUrl: "some.url",
+      });
+      await testPost.save();
+      // get post id
+      testPostID = testPost._id;
+      //console.log(testPostID);
+    });
+
+    it("should update the post title", async function () {
+      console.log("old project title: ", testPost.title);
+      const newTitle = "new project title";
+      //console.log(testPostID);
+      const res = await request(app)
+        .put(`/api/posts/${testPostID}`)
+        .set("Authorization", `Bearer ${token}`)
+        .set({ title: newTitle });
+      console.log(res.body.title);
+      expect(res.status).to.equal(200);
+      expect(res.body.title).to.equal("new project title");
     });
   });
 });
