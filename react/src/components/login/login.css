@@ -1,8 +1,8 @@
 .btn {
   background-color: "#0063B2";
   border-radius: 20px;
-  width: 25%;
-  height: 6%;
+  min-width: 480px;
+  min-height: 64px;
   color: white;
   padding-top: 25%;
   padding-bottom: 25%;
